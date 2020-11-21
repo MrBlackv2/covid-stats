@@ -1,6 +1,44 @@
 /// <reference types="next" />
 /// <reference types="next/types/global" />
 
+interface Statistics {
+  positiveIncrease: number;
+  positive: number;
+  deathIncrease: number;
+  death: number;
+  hospitalizedCurrently: number;
+  inIcuCurrently: number;
+  onVentilatorCurrently: number;
+}
+
+interface UsHistoricalData {
+  date: number;
+  states: number;
+  positive: number;
+  negative: number;
+  pending: number;
+  hospitalizedCurrently: number;
+  hospitalizedCumulative: number;
+  inIcuCurrently: number;
+  inIcuCumulative: number;
+  onVentilatorCurrently: number;
+  onVentilatorCumulative: number;
+  recovered: number;
+  dateChecked: string;
+  death: number;
+  hospitalized: number;
+  totalTestResults: number;
+  lastModified: string;
+  total: number;
+  posNeg: number;
+  deathIncrease: number;
+  hospitalizedIncrease: number;
+  negativeIncrease: number;
+  positiveIncrease: number;
+  totalTestResultsIncrease: number;
+  hash: string;
+}
+
 interface StateMetadata {
   state: string;
   notes: string;

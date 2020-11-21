@@ -1,7 +1,7 @@
-export default class StateHistoricalItem {
+export default class HistoricalItem {
 
   date: number;
-  state: string;
+  fullDate: Date;
   positive: number;
   positiveIncrease: number;
   death: number;
@@ -11,9 +11,9 @@ export default class StateHistoricalItem {
   inIcuCurrently: number;
   onVentilatorCurrently: number;
 
-  constructor(data: StateHistoricalData) {
+  constructor(data: StateHistoricalData | UsHistoricalData) {
     this.date = this.getDate(data.date);
-    this.state = data.state;
+    this.fullDate = new Date(this.date);
     this.positive = data.positive;
     this.positiveIncrease = data.positiveIncrease;
     this.death = data.death;
@@ -36,7 +36,7 @@ export default class StateHistoricalItem {
   }
 }
 
-export const stateHistoricalProperties = {
+export const historicalProperties = {
   positive: 'Total Cases',
   positiveIncrease: 'New Cases',
   death: 'Deaths',
