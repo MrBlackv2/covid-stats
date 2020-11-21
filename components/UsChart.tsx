@@ -35,7 +35,7 @@ export default function UsChart({
             dataKey={selectedProperty}
             domain={['dataMin', 'auto']}
             name={propName} />
-          <Tooltip formatter={(val, x, y, idx) => idx ? y.value : (new Date(val)).toLocaleDateString()} />
+          <Tooltip formatter={(val, x, y, idx) => idx ? y.value : (new Date(val as number)).toLocaleDateString()} />
           <Scatter
             name={propName}
             data={historicalData}
