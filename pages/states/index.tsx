@@ -6,7 +6,7 @@ import useSWR from 'swr';
 import UsChart from '../../components/UsChart';
 import HistoricalItem, { historicalProperties } from '../../model/HistoricalItem';
 import Layout from '../../components/Layout';
-import Statistics from '../../components/Statistics';
+import Statistics from '../../components/StateStats';
 
 const fetcher = (url: string) => axios.get(url).then(res => res.data);
 
@@ -67,7 +67,7 @@ export default function States() {
       <h1 className="mt-2 text-center">State Information</h1>
 
       <div className="d-flex justify-content-center mt-4">
-        <h3 className="mr-3">Selected State:</h3>
+        <h4 className="mr-3 mb-4">Selected State:</h4>
 
         <Dropdown>
           <Dropdown.Toggle variant="primary" id="state-dropdown">
@@ -81,11 +81,15 @@ export default function States() {
         </Dropdown>
       </div>
 
+      <hr className="background-white" />
+
       {currentData && (
         <Statistics stats={currentData} />
       )}
 
-      <h2 className="mt-5 mb-4">Trends</h2>
+      <hr className="background-white" />
+
+      <h2 className="mt-2 mb-4">Trends</h2>
 
       {selectedState && (
         <div className="d-flex mb-4 justify-content-between">

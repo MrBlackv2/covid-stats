@@ -1,4 +1,4 @@
-export default function Statistics({ stats }: { stats: UsStatistics }) {
+export default function StateStats({ stats }: { stats: UsStatistics }) {
   const valueDisplay = (value: number | null) => value === null ? 'Unkown' : value;
 
   return (

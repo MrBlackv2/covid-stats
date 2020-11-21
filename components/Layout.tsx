@@ -21,11 +21,14 @@ export default function Layout({ children }) {
             <Link href="/world" passHref>
               <Nav.Link>World</Nav.Link>
             </Link>
+            <Link href="/countries" passHref>
+              <Nav.Link>Countries</Nav.Link>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
 
-      <main class="container">
+      <main className="container">
         {children}
       </main>
     </>

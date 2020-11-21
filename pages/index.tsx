@@ -6,7 +6,7 @@ import useSWR from 'swr';
 
 import HistoricalItem, { historicalProperties } from '../model/HistoricalItem';
 import Layout from '../components/Layout';
-import Statistics from '../components/Statistics';
+import Statistics from '../components/StateStats';
 import UsChart from '../components/UsChart';
 
 const fetcher = (url: string) => axios.get(url).then(res => res.data);
@@ -44,11 +44,15 @@ export default function Home() {
     <Layout>
       <h1 className="mt-2 text-center">United States Information</h1>
 
+      <hr className="background-white" />
+
       {currentData && (
         <Statistics stats={currentData} />
       )}
 
-      <h2 className="mt-5 mb-4">Trends</h2>
+      <hr className="background-white" />
+
+      <h2 className="mt-2 mb-4">Trends</h2>
 
       <div className="d-flex mb-4 justify-content-between">
         <Dropdown>
