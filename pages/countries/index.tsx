@@ -56,7 +56,7 @@ export default function Countries() {
 
   return (
     <Layout>
-      <h1 className="mt-2 text-center">World Information</h1>
+      <h1 className="mt-2 text-center">Country Information</h1>
 
       <div className="d-flex justify-content-center mt-4">
         <h4 className="mr-3">Selected Country:</h4>
