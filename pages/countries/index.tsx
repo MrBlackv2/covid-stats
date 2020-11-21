@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import Dropdown from 'react-bootstrap/Dropdown';
-
 import useSWR from 'swr';
 
 import Layout from '../../components/Layout';
 import CountryStats from '../../components/CountryStats';
-import { computeHistoricalItems, worldProperties } from '../../model/utils';
+import { computeHistoricalItems, worldProperties, store, getFromStore } from '../../model/utils';
 import WorldChart from '../../components/WorldChart';
 
 const fetcher = (url: string) => axios.get(url).then(res => res.data);
@@ -18,21 +17,26 @@ export default function Countries() {
   const [selectedProperty, setSelectedProperty] = useState('casesToday');
 
   const loadCountryHistoricalData = async (country: CountryData) => {
-    const response = await axios.get<any, AxiosResponse<CountryHistoricalData>>(`https://corona.lmao.ninja/v3/covid-19/historical/${country.country}`);
-    console.log('response', response.data.timeline);
-    setHistoricalData(computeHistoricalItems(response.data.timeline));
+    try {
+      const response = await axios.get<any, AxiosResponse<CountryHistoricalData>>(`https://corona.lmao.ninja/v3/covid-19/historical/${country.country}`);
+      setHistoricalData(computeHistoricalItems(response.data.timeline));
+    } catch (err) {
+      console.error('Error loading historical data', err);
+    }
   };
 
   useEffect(() => {
     if (selectedCountry === null && data && data.length) {
-      const country = data[0];
-      setSelectedCountry(country);
+      const storedCountry = getFromStore('country');
+      const matchingCountry = data.find(c => c.country === storedCountry);
+      setSelectedCountry(matchingCountry || data[0]);
     }
   }, [data]);
 
   useEffect(() => {
     if (selectedCountry) {
       loadCountryHistoricalData(selectedCountry);
+      store('country', selectedCountry.country);
     }
   }, [selectedCountry]);
 

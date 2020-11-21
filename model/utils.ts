@@ -37,3 +37,13 @@ export const stateProperties = {
   inIcuCurrently: 'In ICU',
   onVentilatorCurrently: 'On Ventilator'
 }
+
+export function store(key: string, value: string): void {
+  if (localStorage) {
+    localStorage.setItem(key, value);
+  }
+}
+
+export function getFromStore(key: string): string | null {
+  return localStorage && localStorage.getItem(key);
+}

@@ -7,7 +7,7 @@ import UsChart from '../../components/UsChart';
 import HistoricalItem from '../../model/HistoricalItem';
 import Layout from '../../components/Layout';
 import Statistics from '../../components/StateStats';
-import { stateProperties } from '../../model/utils';
+import { stateProperties, store, getFromStore } from '../../model/utils';
 
 const fetcher = (url: string) => axios.get(url).then(res => res.data);
 
@@ -28,19 +28,22 @@ export default function States() {
         .reverse();
       setHistoricalData(historicalItems);
     } catch (err) {
-      console.error('Error loading historical data');
+      console.error('Error loading historical data', err);
     }
   };
 
   useEffect(() => {
     if (selectedState === null && statesData && !statesError) {
-      setSelectedState(statesData[0]);
+      const storedState = getFromStore('state');
+      const matchingState = statesData.find(s => s.state === storedState);
+      setSelectedState(matchingState || statesData[0]);
     }
   }, [statesData]);
 
   useEffect(() => {
     if (selectedState?.state) {
       loadStateTrend(selectedState.state.toLowerCase());
+      store('state', selectedState.state);
     }
   }, [selectedState]);
 
