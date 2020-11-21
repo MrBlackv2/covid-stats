@@ -67,8 +67,8 @@ export default function States() {
     <Layout>
       <h1 className="mt-2 text-center">State Information</h1>
 
-      <div className="d-flex justify-content-center mt-4">
-        <h4 className="mr-3 mb-4">Selected State:</h4>
+      <div className="d-flex justify-content-center align-items-center mt-4">
+        <h4 className="mr-3 mb-0">Selected State:</h4>
 
         <Dropdown>
           <Dropdown.Toggle variant="primary" id="state-dropdown">

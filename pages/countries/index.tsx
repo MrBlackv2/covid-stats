@@ -58,8 +58,8 @@ export default function Countries() {
     <Layout>
       <h1 className="mt-2 text-center">Country Information</h1>
 
-      <div className="d-flex justify-content-center mt-4">
-        <h4 className="mr-3">Selected Country:</h4>
+      <div className="d-flex justify-content-center align-items-center mt-4">
+        <h4 className="mr-3 mb-0">Selected Country:</h4>
 
         <Dropdown>
           <Dropdown.Toggle variant="primary" id="state-dropdown">
