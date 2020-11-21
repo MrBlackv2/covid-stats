@@ -28,7 +28,7 @@ export default function States() {
         .reverse();
       setHistoricalData(historicalItems);
     } catch (err) {
-      console.error('Error loading historical data', err);
+      console.error('Error loading historical data:', err);
     }
   };
 
