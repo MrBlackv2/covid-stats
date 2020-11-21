@@ -10,7 +10,7 @@ import {
   Tooltip
 } from 'recharts';
 
-import HistoricalItem from '../model/HistoricalItem';
+import StateHistoricalItem from '../model/StateHistoricalItem';
 
 export default function UsChart({
   isScatter, selectedProperty, propName, historicalData
@@ -18,7 +18,7 @@ export default function UsChart({
   isScatter: boolean,
   selectedProperty: string,
   propName: string,
-  historicalData: HistoricalItem[]
+  historicalData: StateHistoricalItem[]
 }) {
   return (
     <ResponsiveContainer>

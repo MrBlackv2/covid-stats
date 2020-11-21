@@ -1,4 +1,4 @@
-export default class HistoricalItem {
+export default class StateHistoricalItem {
 
   date: number;
   fullDate: Date;

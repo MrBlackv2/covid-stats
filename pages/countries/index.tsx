@@ -5,7 +5,7 @@ import useSWR from 'swr';
 
 import Layout from '../../components/Layout';
 import CountryStats from '../../components/CountryStats';
-import { computeHistoricalItems, worldProperties, store, getFromStore } from '../../model/utils';
+import { computeWorldHistoricalItems, worldProperties, store, getFromStore } from '../../model/utils';
 import WorldChart from '../../components/WorldChart';
 
 const fetcher = (url: string) => axios.get(url).then(res => res.data);
@@ -19,7 +19,7 @@ export default function Countries() {
   const loadCountryHistoricalData = async (country: CountryData) => {
     try {
       const response = await axios.get<any, AxiosResponse<CountryHistoricalData>>(`https://corona.lmao.ninja/v3/covid-19/historical/${country.country}`);
-      setHistoricalData(computeHistoricalItems(response.data.timeline));
+      setHistoricalData(computeWorldHistoricalItems(response.data.timeline));
     } catch (err) {
       console.error('Error loading historical data', err);
     }

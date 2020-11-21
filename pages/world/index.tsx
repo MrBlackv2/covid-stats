@@ -5,7 +5,7 @@ import useSWR from 'swr';
 
 import Layout from '../../components/Layout';
 import WorldStatistics from '../../components/WorldStats';
-import { computeHistoricalItems, worldProperties } from '../../model/utils';
+import { computeWorldHistoricalItems, worldProperties } from '../../model/utils';
 import WorldChart from '../../components/WorldChart';
 
 const fetcher = (url: string) => axios.get(url).then(res => res.data);
@@ -30,7 +30,7 @@ export default function World() {
     );
   }
 
-  const historicalData = computeHistoricalItems(data);
+  const historicalData = computeWorldHistoricalItems(data);
   const currentData = historicalData[historicalData.length - 1];
   const propName = worldProperties[selectedProperty];
 

@@ -196,3 +196,20 @@ interface CountryStatistics {
   recoveredPerOneMillion: number;
   criticalPerOneMillion: number;
 }
+
+interface CountyData {
+  province: string;
+  county: string;
+  timeline: {
+    cases: { [date: string]: number },
+    deaths: { [date: string]: number }
+  };
+}
+
+interface CountyHistoricalItem {
+  date: string;
+  cases: number;
+  casesToday: number;
+  deaths: number;
+  deathsToday: number;
+}

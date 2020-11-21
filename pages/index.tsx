@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import useSWR from 'swr';
 
-import HistoricalItem from '../model/HistoricalItem';
+import StateHistoricalItem from '../model/StateHistoricalItem';
 import Layout from '../components/Layout';
 import Statistics from '../components/StateStats';
 import UsChart from '../components/UsChart';
@@ -34,7 +34,7 @@ export default function Home() {
 
   const today = new Date();
   const historicalData = usData
-    .map(item => new HistoricalItem(item))
+    .map(item => new StateHistoricalItem(item))
     .filter(item => item.fullDate <= today)
     .reverse();
   const propName = stateProperties[selectedProperty];
