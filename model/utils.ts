@@ -21,18 +21,18 @@ export function computeHistoricalItems(data: WorldHistoricalData) {
 
 export const worldProperties = {
   cases: 'Total Cases',
-  casesToday: 'Cases (Today)',
+  casesToday: 'New Cases',
   deaths: 'Total Deaths',
-  deathsToday: 'Deaths (Today)',
+  deathsToday: 'New Deaths',
   recovered: 'Total Recovered',
-  recoveredToday: 'Recovered (Today)'
+  recoveredToday: 'New Recovered'
 };
 
 export const stateProperties = {
   positive: 'Total Cases',
-  positiveIncrease: 'Cases (Today)',
+  positiveIncrease: 'New Cases',
   death: 'Deaths',
-  deathIncrease: 'Deaths (Today)',
+  deathIncrease: 'New Deaths',
   hospitalizedCurrently: 'Hospitalized',
   inIcuCurrently: 'In ICU',
   onVentilatorCurrently: 'On Ventilator'
