@@ -59,15 +59,15 @@ export default function UsTrends() {
   return (
     <Layout>
       <div className="container">
-        <h2>Trends by State</h2>
+        <h2 className="mt-2 text-center">Trends by State</h2>
 
         {selectedState && (
-          <div className="d-flex mb-2">
+          <div className="d-flex mb-4">
             <Dropdown className="mr-4">
               <Dropdown.Toggle variant="success" id="state-dropdown">
                 {selectedState.name}
               </Dropdown.Toggle>
-              <Dropdown.Menu>
+              <Dropdown.Menu className="dropdown-list">
                 {statesData.map(data => (
                   <Dropdown.Item key={data.state} onClick={() => setSelectedState(data)}>{data.name}</Dropdown.Item>
                 ))}
@@ -78,7 +78,7 @@ export default function UsTrends() {
               <Dropdown.Toggle variant="info" id="type-dropdown">
                 {propName}
               </Dropdown.Toggle>
-              <Dropdown.Menu>
+              <Dropdown.Menu className="dropdown-list">
                 {Object.keys(stateHistoricalProperties).map(key => (
                   <Dropdown.Item key={key} onClick={() => setSelectedProperty(key)}>{stateHistoricalProperties[key]}</Dropdown.Item>
                 ))}
@@ -86,8 +86,6 @@ export default function UsTrends() {
             </Dropdown>
           </div>
         )}
-
-        <hr />
 
         <div className="chart-container">
           <ResponsiveContainer>
