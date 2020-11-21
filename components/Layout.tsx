@@ -25,7 +25,7 @@ export default function Layout({ children }) {
         </Navbar.Collapse>
       </Navbar>
 
-      <main>
+      <main class="container">
         {children}
       </main>
     </>

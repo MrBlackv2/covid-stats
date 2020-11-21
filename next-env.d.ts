@@ -1,7 +1,7 @@
 /// <reference types="next" />
 /// <reference types="next/types/global" />
 
-interface Statistics {
+interface UsStatistics {
   positiveIncrease: number;
   positive: number;
   deathIncrease: number;
@@ -112,4 +112,23 @@ interface StateHistoricalData {
   positiveScore: number;
   score: number;
   grade: string;
+}
+
+interface WorldHistoricalData {
+  cases: { [date: string]: number };
+  deaths: { [date: string]: number };
+  recovered: { [date: string]: number };
+}
+
+interface WorldHistoricalItem {
+  date: string;
+  cases: number;
+  deaths: number;
+  recovered: number;
+}
+
+interface WorldStatistics {
+  cases: number;
+  deaths: number;
+  recovered: number;
 }

@@ -42,46 +42,44 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="container">
-        <h1 className="mt-2 text-center">United States Information</h1>
+      <h1 className="mt-2 text-center">United States Information</h1>
 
-        {currentData && (
-          <Statistics stats={currentData} />
-        )}
+      {currentData && (
+        <Statistics stats={currentData} />
+      )}
 
-        <h2 className="mt-5 mb-4">Trends</h2>
+      <h2 className="mt-5 mb-4">Trends</h2>
 
-        <div className="d-flex mb-4 justify-content-between">
-          <Dropdown>
-            <Dropdown.Toggle variant="success" id="type-dropdown">
-              {propName}
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="dropdown-list">
-              {Object.keys(historicalProperties).map(key => (
-                <Dropdown.Item key={key} onClick={() => setSelectedProperty(key)}>{historicalProperties[key]}</Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
+      <div className="d-flex mb-4 justify-content-between">
+        <Dropdown>
+          <Dropdown.Toggle variant="success" id="type-dropdown">
+            {propName}
+          </Dropdown.Toggle>
+          <Dropdown.Menu className="dropdown-list">
+            {Object.keys(historicalProperties).map(key => (
+              <Dropdown.Item key={key} onClick={() => setSelectedProperty(key)}>{historicalProperties[key]}</Dropdown.Item>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
 
-          <Dropdown>
-            <Dropdown.Toggle variant="info" id="chart-dropdown">
-              {isScatter ? 'Scatter' : 'Line'}
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="dropdown-list">
-              <Dropdown.Item onClick={() => setIsScatter(false)}>Line</Dropdown.Item>
-              <Dropdown.Item onClick={() => setIsScatter(true)}>Scatter</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
+        <Dropdown>
+          <Dropdown.Toggle variant="info" id="chart-dropdown">
+            {isScatter ? 'Scatter' : 'Line'}
+          </Dropdown.Toggle>
+          <Dropdown.Menu className="dropdown-list">
+            <Dropdown.Item onClick={() => setIsScatter(false)}>Line</Dropdown.Item>
+            <Dropdown.Item onClick={() => setIsScatter(true)}>Scatter</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
 
-        <div className="chart-container">
-          <UsChart
-            isScatter={isScatter}
-            selectedProperty={selectedProperty}
-            propName={propName}
-            historicalData={historicalData}
-          />
-        </div>
+      <div className="chart-container">
+        <UsChart
+          isScatter={isScatter}
+          selectedProperty={selectedProperty}
+          propName={propName}
+          historicalData={historicalData}
+        />
       </div>
     </Layout>
   );

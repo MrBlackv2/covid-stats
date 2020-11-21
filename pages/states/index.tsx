@@ -64,63 +64,61 @@ export default function States() {
 
   return (
     <Layout>
-      <div className="container">
-        <h1 className="mt-2 text-center">State Information</h1>
+      <h1 className="mt-2 text-center">State Information</h1>
 
-        <div className="d-flex justify-content-center mt-4">
-          <h3 className="mr-3">Selected State:</h3>
+      <div className="d-flex justify-content-center mt-4">
+        <h3 className="mr-3">Selected State:</h3>
 
+        <Dropdown>
+          <Dropdown.Toggle variant="primary" id="state-dropdown">
+            {selectedState?.name}
+          </Dropdown.Toggle>
+          <Dropdown.Menu alignRight className="dropdown-list">
+            {statesData.map(data => (
+              <Dropdown.Item key={data.state} onClick={() => setSelectedState(data)}>{data.name}</Dropdown.Item>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
+
+      {currentData && (
+        <Statistics stats={currentData} />
+      )}
+
+      <h2 className="mt-5 mb-4">Trends</h2>
+
+      {selectedState && (
+        <div className="d-flex mb-4 justify-content-between">
           <Dropdown>
-            <Dropdown.Toggle variant="primary" id="state-dropdown">
-              {selectedState?.name}
+            <Dropdown.Toggle variant="success" id="type-dropdown">
+              {propName}
             </Dropdown.Toggle>
-            <Dropdown.Menu alignRight className="dropdown-list">
-              {statesData.map(data => (
-                <Dropdown.Item key={data.state} onClick={() => setSelectedState(data)}>{data.name}</Dropdown.Item>
+            <Dropdown.Menu className="dropdown-list">
+              {Object.keys(historicalProperties).map(key => (
+                <Dropdown.Item key={key} onClick={() => setSelectedProperty(key)}>{historicalProperties[key]}</Dropdown.Item>
               ))}
             </Dropdown.Menu>
           </Dropdown>
+
+          <Dropdown>
+            <Dropdown.Toggle variant="info" id="chart-dropdown">
+              {isScatter ? 'Scatter' : 'Line'}
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="dropdown-list">
+              <Dropdown.Item onClick={() => setIsScatter(false)}>Line</Dropdown.Item>
+              <Dropdown.Item onClick={() => setIsScatter(true)}>Scatter</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
+      )}
 
-        {currentData && (
-          <Statistics stats={currentData} />
-        )}
-
-        <h2 className="mt-5 mb-4">Trends</h2>
-
-        {selectedState && (
-          <div className="d-flex mb-4 justify-content-between">
-            <Dropdown>
-              <Dropdown.Toggle variant="success" id="type-dropdown">
-                {propName}
-              </Dropdown.Toggle>
-              <Dropdown.Menu className="dropdown-list">
-                {Object.keys(historicalProperties).map(key => (
-                  <Dropdown.Item key={key} onClick={() => setSelectedProperty(key)}>{historicalProperties[key]}</Dropdown.Item>
-                ))}
-              </Dropdown.Menu>
-            </Dropdown>
-
-            <Dropdown>
-              <Dropdown.Toggle variant="info" id="chart-dropdown">
-                {isScatter ? 'Scatter' : 'Line'}
-              </Dropdown.Toggle>
-              <Dropdown.Menu className="dropdown-list">
-                <Dropdown.Item onClick={() => setIsScatter(false)}>Line</Dropdown.Item>
-                <Dropdown.Item onClick={() => setIsScatter(true)}>Scatter</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
-        )}
-
-        <div className="chart-container">
-          <UsChart
-            isScatter={isScatter}
-            selectedProperty={selectedProperty}
-            propName={propName}
-            historicalData={historicalData}
-          />
-        </div>
+      <div className="chart-container">
+        <UsChart
+          isScatter={isScatter}
+          selectedProperty={selectedProperty}
+          propName={propName}
+          historicalData={historicalData}
+        />
       </div>
     </Layout>
   );
