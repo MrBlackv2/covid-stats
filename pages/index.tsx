@@ -3,11 +3,11 @@ import { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import useSWR from 'swr';
 
-
-import HistoricalItem, { historicalProperties } from '../model/HistoricalItem';
+import HistoricalItem from '../model/HistoricalItem';
 import Layout from '../components/Layout';
 import Statistics from '../components/StateStats';
 import UsChart from '../components/UsChart';
+import { stateProperties } from '../model/utils';
 
 const fetcher = (url: string) => axios.get(url).then(res => res.data);
 
@@ -37,7 +37,7 @@ export default function Home() {
     .map(item => new HistoricalItem(item))
     .filter(item => item.fullDate <= today)
     .reverse();
-  const propName = historicalProperties[selectedProperty];
+  const propName = stateProperties[selectedProperty];
   const currentData = historicalData[historicalData.length - 1];
 
   return (
@@ -60,8 +60,8 @@ export default function Home() {
             {propName}
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-list">
-            {Object.keys(historicalProperties).map(key => (
-              <Dropdown.Item key={key} onClick={() => setSelectedProperty(key)}>{historicalProperties[key]}</Dropdown.Item>
+            {Object.keys(stateProperties).map(key => (
+              <Dropdown.Item key={key} onClick={() => setSelectedProperty(key)}>{stateProperties[key]}</Dropdown.Item>
             ))}
           </Dropdown.Menu>
         </Dropdown>

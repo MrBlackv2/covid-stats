@@ -4,9 +4,10 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import useSWR from 'swr';
 
 import UsChart from '../../components/UsChart';
-import HistoricalItem, { historicalProperties } from '../../model/HistoricalItem';
+import HistoricalItem from '../../model/HistoricalItem';
 import Layout from '../../components/Layout';
 import Statistics from '../../components/StateStats';
+import { stateProperties } from '../../model/utils';
 
 const fetcher = (url: string) => axios.get(url).then(res => res.data);
 
@@ -59,7 +60,7 @@ export default function States() {
     );
   }
 
-  const propName = historicalProperties[selectedProperty];
+  const propName = stateProperties[selectedProperty];
   const currentData = historicalData[historicalData.length - 1];
 
   return (
@@ -98,8 +99,8 @@ export default function States() {
               {propName}
             </Dropdown.Toggle>
             <Dropdown.Menu className="dropdown-list">
-              {Object.keys(historicalProperties).map(key => (
-                <Dropdown.Item key={key} onClick={() => setSelectedProperty(key)}>{historicalProperties[key]}</Dropdown.Item>
+              {Object.keys(stateProperties).map(key => (
+                <Dropdown.Item key={key} onClick={() => setSelectedProperty(key)}>{stateProperties[key]}</Dropdown.Item>
               ))}
             </Dropdown.Menu>
           </Dropdown>

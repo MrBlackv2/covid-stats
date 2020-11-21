@@ -1,23 +1,18 @@
 import axios from 'axios';
-import {
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip
-} from 'recharts';
+import { useState } from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
 import useSWR from 'swr';
 
 import Layout from '../../components/Layout';
 import WorldStatistics from '../../components/WorldStats';
-import { computeHistoricalItems } from '../../model/utils';
+import { computeHistoricalItems, worldProperties } from '../../model/utils';
+import WorldChart from '../../components/WorldChart';
 
 const fetcher = (url: string) => axios.get(url).then(res => res.data);
 
 export default function World() {
   const { data, error } = useSWR<WorldHistoricalData, any>('https://corona.lmao.ninja/v3/covid-19/historical/all', fetcher);
+  const [selectedProperty, setSelectedProperty] = useState('casesToday');
 
   if (error) {
     return (
@@ -37,6 +32,7 @@ export default function World() {
 
   const historicalData = computeHistoricalItems(data);
   const currentData = historicalData[historicalData.length - 1];
+  const propName = worldProperties[selectedProperty];
 
   return (
     <Layout>
@@ -50,25 +46,25 @@ export default function World() {
 
       <h2 className="mt-2 mb-4">Trends</h2>
 
+      <div className="mb-4">
+        <Dropdown>
+          <Dropdown.Toggle variant="success" id="type-dropdown">
+            {propName}
+          </Dropdown.Toggle>
+          <Dropdown.Menu className="dropdown-list">
+            {Object.keys(worldProperties).map(key => (
+              <Dropdown.Item key={key} onClick={() => setSelectedProperty(key)}>{worldProperties[key]}</Dropdown.Item>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
+
       <div className="chart-container">
-        <ResponsiveContainer>
-          <LineChart data={historicalData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis
-              dataKey="date"
-              domain={['dataMin', 'dataMax']}
-              tickFormatter={(date: number) => (new Date(date)).toLocaleDateString()}
-            />
-            <YAxis domain={['dataMin', 'auto']} />
-            <Tooltip
-              labelStyle={{ color: "black" }}
-              labelFormatter={(val) => 'Date: ' + (new Date(val)).toLocaleDateString()}
-            />
-            <Line type="monotone" dataKey="cases" name="Cases" stroke="#8884d8" />
-            <Line type="monotone" dataKey="deaths" name="Deaths" stroke="#ff2222" />
-            <Line type="monotone" dataKey="recovered" name="Recovered" stroke="#82ca9d" />
-          </LineChart>
-        </ResponsiveContainer>
+        <WorldChart
+          historicalData={historicalData}
+          selectedProperty={selectedProperty}
+          propName={propName}
+        />
       </div>
     </Layout>
   );

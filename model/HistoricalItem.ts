@@ -35,14 +35,3 @@ export default class HistoricalItem {
     return (new Date(year, month, day)).valueOf();
   }
 }
-
-export const historicalProperties = {
-  positive: 'Total Cases',
-  positiveIncrease: 'New Cases',
-  death: 'Deaths',
-  deathIncrease: 'New Deaths',
-  negative: 'Negative Results',
-  hospitalizedCurrently: 'Hospitalized',
-  inIcuCurrently: 'In ICU',
-  onVentilatorCurrently: 'On Ventilator'
-}
