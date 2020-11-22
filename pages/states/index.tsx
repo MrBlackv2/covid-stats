@@ -187,7 +187,7 @@ export default function States() {
 
             <Dropdown>
               <Dropdown.Toggle variant="success" id="type-dropdown">
-                {propName}
+                {countyPropName}
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-list">
                 {Object.keys(countyProperties).map(key => (
