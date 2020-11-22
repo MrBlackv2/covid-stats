@@ -76,7 +76,6 @@ export default function States() {
     if (selectedCounty !== null) {
       const county = allCountyData.find(d => d.county === selectedCounty);
       const historicalItems = computeCountyHistoricalItems(county);
-      console.log('county historical data', historicalItems);
       setCountyHistoricalData(historicalItems);
     }
   }, [selectedCounty]);
