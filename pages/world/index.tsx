@@ -12,6 +12,7 @@ const fetcher = (url: string) => axios.get(url).then(res => res.data);
 
 export default function World() {
   const { data, error } = useSWR<WorldHistoricalData, any>('https://corona.lmao.ninja/v3/covid-19/historical/all', fetcher);
+  const { data: worldStatsData, error: worldStatsError } = useSWR<WorldStatistics, any>('https://corona.lmao.ninja/v3/covid-19/all', fetcher);
   const [selectedProperty, setSelectedProperty] = useState('casesToday');
 
   if (error) {
@@ -31,16 +32,19 @@ export default function World() {
   }
 
   const historicalData = computeWorldHistoricalItems(data);
-  const currentData = historicalData[historicalData.length - 1];
   const propName = worldProperties[selectedProperty];
 
   return (
     <Layout>
       <h1 className="mt-2 text-center">World Information</h1>
 
-      <hr className="background-white" />
+      {worldStatsData && !worldStatsError && (
+        <>
+          <hr className="background-white" />
 
-      <WorldStatistics stats={currentData} />
+          <WorldStatistics stats={worldStatsData} />
+        </>
+      )}
 
       <hr className="background-white" />
 

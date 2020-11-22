@@ -131,9 +131,27 @@ interface WorldHistoricalItem {
 }
 
 interface WorldStatistics {
+  updated: number;
   cases: number;
+  todayCases: number;
   deaths: number;
+  todayDeaths: number;
   recovered: number;
+  todayRecovered: number;
+  active: number;
+  critical: number;
+  casesPerOneMillion: number;
+  deathsPerOneMillion: number;
+  tests: number;
+  testsPerOneMillion: number;
+  population: number;
+  oneCasePerPeople: number;
+  oneDeathPerPeople: number;
+  oneTestPerPeople: number;
+  activePerOneMillion: number;
+  recoveredPerOneMillion: number;
+  criticalperOneMillion: number;
+  affectedCountries: number;
 }
 
 interface CountryData {
