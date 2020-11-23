@@ -79,10 +79,6 @@ export default function Countries() {
 
       <hr className="background-white" />
 
-      {selectedCountry && <CountryStats stats={selectedCountry} />}
-
-      <hr className="background-white" />
-
       <h2 className="mt-2 mb-4">Trends</h2>
 
       <div className="mb-4">
@@ -105,6 +101,10 @@ export default function Countries() {
           propName={propName}
         />
       </div>
+
+      <hr className="background-white" />
+
+      {selectedCountry && <CountryStats stats={selectedCountry} />}
     </Layout>
   );
 }

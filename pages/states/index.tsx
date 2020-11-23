@@ -122,12 +122,6 @@ export default function States() {
 
       <hr className="background-white" />
 
-      {currentData && (
-        <Statistics stats={currentData} />
-      )}
-
-      <hr className="background-white" />
-
       <h2 className="mt-2 mb-4">Trends</h2>
 
       {selectedState && (
@@ -204,6 +198,12 @@ export default function States() {
             />
           </div>
         </>
+      )}
+
+      <hr className="background-white" />
+
+      {currentData && (
+        <Statistics stats={currentData} />
       )}
     </Layout>
   );

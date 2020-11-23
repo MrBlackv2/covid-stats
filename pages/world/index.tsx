@@ -38,14 +38,6 @@ export default function World() {
     <Layout>
       <h1 className="mt-2 text-center">World Information</h1>
 
-      {worldStatsData && !worldStatsError && (
-        <>
-          <hr className="background-white" />
-
-          <WorldStatistics stats={worldStatsData} />
-        </>
-      )}
-
       <hr className="background-white" />
 
       <h2 className="mt-2 mb-4">Trends</h2>
@@ -70,6 +62,14 @@ export default function World() {
           propName={propName}
         />
       </div>
+
+      {worldStatsData && !worldStatsError && (
+        <>
+          <hr className="background-white" />
+
+          <WorldStatistics stats={worldStatsData} />
+        </>
+      )}
     </Layout>
   );
 }

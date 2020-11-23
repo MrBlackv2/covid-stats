@@ -46,12 +46,6 @@ export default function Home() {
 
       <hr className="background-white" />
 
-      {currentData && (
-        <Statistics stats={currentData} />
-      )}
-
-      <hr className="background-white" />
-
       <h2 className="mt-2 mb-4">Trends</h2>
 
       <div className="d-flex mb-4 justify-content-between">
@@ -85,6 +79,12 @@ export default function Home() {
           historicalData={historicalData}
         />
       </div>
+
+      <hr className="background-white" />
+
+      {currentData && (
+        <Statistics stats={currentData} />
+      )}
     </Layout>
   );
 }
